@@ -1,0 +1,8 @@
+services:
+  smtp4dev:
+    container_name: smtp4dev
+    image: rnwood/smtp4dev:3.4.0
+    restart: always
+    ports:
+      - "8081:80"
+      - "25:25"
