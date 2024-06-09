@@ -184,7 +184,7 @@ public class UserService implements UserDetailsService {
             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    public List<User> finAllById(List<Integer> ids) {
+    public List<User> findAllById(List<Integer> ids) {
         // Avoid duplicates
         Set<Integer> set = new HashSet<>(ids);
         ids = new ArrayList<>(set);

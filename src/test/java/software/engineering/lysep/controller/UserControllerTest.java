@@ -25,23 +25,23 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest(UserController.class)
 @Import(TestSecurityConfig.class)
-public class UserControllerTest {
+class UserControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    ObjectMapper objectMapper;
 
 
     @MockBean
-    private UserService userService;
+    UserService userService;
 
     @MockBean
-    private AuthenticationManager authenticationManager;
+    AuthenticationManager authenticationManager;
 
     @MockBean
-    private JwtService jwtService;
+    JwtService jwtService;
 
     @Test
     public void testSignUp() throws Exception {

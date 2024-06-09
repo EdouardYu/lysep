@@ -77,4 +77,19 @@ public class User implements UserDetails {
     public boolean isEnabled() { // est-ce que le compte est actif
         return this.enabled;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return this.id == user.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.id;
+    }
 }
