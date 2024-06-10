@@ -6,36 +6,22 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Instant;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "event")
-public class Event {
+@Table(name = "notification")
+public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String title;
 
-    private String description;
-
-    private Instant date;
+    private String content;
 
     @ManyToOne
-    @JoinColumn(name = "module_id")
-    private Module module;
-
-    @ManyToOne
-    @JoinColumn(name = "created_by")
-    private User publisher;
-
-    @Column(name = "created_at")
-    private Instant createdAt;
-
-    private boolean deleted;
-
+    @JoinColumn(name = "event_id")
+    private Event event;
 }

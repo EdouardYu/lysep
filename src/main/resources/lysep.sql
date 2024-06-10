@@ -57,7 +57,6 @@ CREATE TABLE IF NOT EXISTS student_module (
     CONSTRAINT student_module_fk FOREIGN KEY (module_id) REFERENCES module(id)
 );
 
-
 CREATE TABLE IF NOT EXISTS event (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     title VARCHAR NOT NULL,
@@ -66,6 +65,7 @@ CREATE TABLE IF NOT EXISTS event (
     module_id INTEGER NOT NULL,
     created_by INTEGER NOT NULL,
     created_at TIMESTAMP NOT NULL,
+    deleted BOOLEAN NOT NULL DEFAULT FALSE,
     CONSTRAINT event_module_fk FOREIGN KEY (module_id) REFERENCES module(id),
     CONSTRAINT event_organizer_fk FOREIGN KEY (created_by) REFERENCES "user"(id)
 );
@@ -92,5 +92,21 @@ CREATE TABLE IF NOT EXISTS alert (
     content TEXT NOT NULL,
     event_id INTEGER NOT NULL,
     CONSTRAINT alert_event_fk FOREIGN KEY (event_id) REFERENCES event(id)
+);
+
+CREATE TABLE IF NOT EXISTS user_notification (
+    user_id INTEGER NOT NULL,
+    notification_id INTEGER NOT NULL,
+    PRIMARY KEY (user_id, notification_id),
+    CONSTRAINT user_notification_user_fk FOREIGN KEY (user_id) REFERENCES "user"(id),
+    CONSTRAINT user_notification_notification_fk FOREIGN KEY (notification_id) REFERENCES notification(id)
+);
+
+CREATE TABLE IF NOT EXISTS user_alert (
+    user_id INTEGER NOT NULL,
+    alert_id INTEGER NOT NULL,
+    PRIMARY KEY (user_id, alert_id),
+    CONSTRAINT user_alert_user_fk FOREIGN KEY (user_id) REFERENCES "user"(id),
+    CONSTRAINT user_alert_alert_fk FOREIGN KEY (alert_id) REFERENCES alert(id)
 );
 

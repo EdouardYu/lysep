@@ -10,5 +10,7 @@ public interface ProfessorModuleRepository extends JpaRepository<ProfessorModule
 
     List<ProfessorModule> findAllByModuleId(int id);
 
+    List<ProfessorModule> findAllByProfessorId(int id);
+
     void deleteByModuleIdAndProfessorIdIn(int moduleId, List<Integer> professorsToRemove);
 }

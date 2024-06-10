@@ -32,7 +32,7 @@ public class ModuleService {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(Role.PROFESSOR.equals(user.getRole())
             && !this.isProfessorAssignedToModule(user.getId(), module.getId()))
-            throw new AccessDeniedException("Permission denied");
+            throw new AccessDeniedException("Access denied");
 
         List<User> students = this.userService.findAllByIdInAndRole(assignUserDTO.getUserIds(), Role.STUDENT);
 
@@ -110,6 +110,17 @@ public class ModuleService {
     }
 
     public List<Module> findAll() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(Role.PROFESSOR.equals(user.getRole()))
+            return this.findAllProfessorModulesByProfessorId(user.getId()).stream()
+                .map(ProfessorModule::getModule)
+                .toList();
+
+        if(Role.STUDENT.equals(user.getRole()))
+            return this.findAllStudentModulesByStudentId(user.getId()).stream()
+                .map(StudentModule::getModule)
+                .toList();
+
         return this.moduleRepository.findAll();
     }
 
@@ -126,7 +137,17 @@ public class ModuleService {
         return this.professorModuleRepository.findAllByModuleId(id);
     }
 
-    private boolean isProfessorAssignedToModule(int professorId, int moduleId) {
-        return professorModuleRepository.existsByProfessorIdAndModuleId(professorId, moduleId);
+    public List<StudentModule> findAllStudentModulesByStudentId(int id) {
+        return this.studentModuleRepository.findAllByStudentId(id);
+    }
+
+    public List<ProfessorModule> findAllProfessorModulesByProfessorId(int id) {
+        return this.professorModuleRepository.findAllByProfessorId(id);
+    }
+
+
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    public boolean isProfessorAssignedToModule(int professorId, int moduleId) {
+        return this.professorModuleRepository.existsByProfessorIdAndModuleId(professorId, moduleId);
     }
 }
