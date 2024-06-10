@@ -11,12 +11,11 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("notifications")
 public class NotificationController {
     private final NotificationService notificationService;
 
     @ResponseStatus(value = HttpStatus.OK)
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "notifications", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<NotificationDTO> getUserNotifications() {
         return notificationService.getUserNotifications();
     }
