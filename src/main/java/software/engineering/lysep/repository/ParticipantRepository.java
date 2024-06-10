@@ -13,6 +13,6 @@ public interface ParticipantRepository extends JpaRepository<Participant, Intege
 
     List<Participant> findAllByEventId(int id);
 
-    @Query("SELECT P FROM Participant P WHERE P.user.id = :userId AND P.event.deleted = FALSE")
+    @Query("SELECT P FROM Participant P WHERE P.user.id = :id AND P.event.deleted = FALSE")
     Stream<Participant> findAllByUserId(int id);
 }

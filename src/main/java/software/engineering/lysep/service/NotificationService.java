@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import software.engineering.lysep.dto.mapper.NotificationMapper;
+import software.engineering.lysep.dto.notification.NotificationDTO;
 import software.engineering.lysep.entity.*;
 import software.engineering.lysep.repository.NotificationRepository;
 import software.engineering.lysep.repository.UserNotificationRepository;
@@ -80,8 +83,8 @@ public class NotificationService {
     }
 
     public void sendEventModificationNotification(User user, Event event, List<Participant> participants) {
-        String content = event.getPublisher().getFirstname() + " "
-            + event.getPublisher().getLastname() + " a mis à jour l’évènement \"" + event.getTitle()
+        String content = user.getFirstname() + " "
+            + user.getLastname() + " a mis à jour l’évènement \"" + event.getTitle()
             + "\" le " + this.convertInstantToDate(Instant.now());
 
         Notification notification = Notification.builder()
@@ -143,6 +146,15 @@ public class NotificationService {
         message.setSubject(notification.getTitle());
         message.setText(notification.getContent());
         this.javaMailSender.send(message);
+    }
+
+    public List<NotificationDTO> getUserNotifications() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        return userNotificationRepository
+            .findAllByUserIdAndEventDateAfter(user.getId(), Instant.now())
+            .map(NotificationMapper::toNotificationDTO)
+            .toList();
     }
 
     private String convertInstantToDate(Instant instant) {

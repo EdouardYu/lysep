@@ -9,6 +9,7 @@ import software.engineering.lysep.dto.event.EventCreationDTO;
 import software.engineering.lysep.dto.event.EventDTO;
 import software.engineering.lysep.dto.event.EventModificationDTO;
 import software.engineering.lysep.dto.event.LiteEventDTO;
+import software.engineering.lysep.dto.mapper.EventMapper;
 import software.engineering.lysep.dto.user.FullnameDTO;
 import software.engineering.lysep.entity.*;
 import software.engineering.lysep.entity.Module;
@@ -127,13 +128,7 @@ public class EventService {
         else
             events = this.eventRepository.findAll().stream();
 
-        return events.map(event -> LiteEventDTO.builder()
-                .id(event.getId())
-                .title(event.getTitle())
-                .date(event.getDate())
-                .module(event.getModule())
-                .build())
-            .toList();
+        return events.map(EventMapper::toLiteEventDTO).toList();
     }
 
     public EventDTO getEventById(int id) {
@@ -159,6 +154,8 @@ public class EventService {
             .createdAt(event.getCreatedAt())
             .build();
     }
+
+
 
     private Event findById(int id) {
         return this.eventRepository.findById(id)
