@@ -8,6 +8,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import software.engineering.lysep.security.TestSecurityConfig;
 import software.engineering.lysep.dto.user.*;
@@ -18,6 +19,7 @@ import software.engineering.lysep.service.UserService;
 import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -93,16 +95,17 @@ class UserControllerTest {
 
         when(this.jwtService.generate(any(String.class))).thenReturn(Map.of("bearer", "token"));
 
-
         this.mockMvc.perform(post("/signin")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(authenticationDTO)))
             .andExpect(status().isOk())
-            .andDo(print())
-            .andExpect(jsonPath("$.bearer").exists());
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath("$.bearer").exists())
+            .andDo(print());
     }
 
     @Test
+    @WithMockUser(username = "EdouardY", roles = {"STUDENT"})
     public void testSignOut() throws Exception {
         this.mockMvc.perform(post("/signout"))
             .andExpect(status().isOk());
@@ -135,6 +138,7 @@ class UserControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "EdouardY", roles = {"STUDENT"})
     public void testGetProfile() throws Exception {
         ProfileDTO profile = ProfileDTO.builder()
             .email("edouard.yu@eleve.isep.com")
@@ -145,26 +149,22 @@ class UserControllerTest {
             .role(Role.STUDENT)
             .build();
 
-        when(userService.getProfile(any(Integer.class))).thenReturn(profile);
+        when(userService.getProfile(anyInt())).thenReturn(profile);
 
         this.mockMvc.perform(get("/profiles/1"))
             .andExpect(status().isOk())
-            .andDo(print())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.email").value("edouard.yu@eleve.isep.com"))
             .andExpect(jsonPath("$.firstname").value("Edouard"))
             .andExpect(jsonPath("$.lastname").value("Yu"))
             .andExpect(jsonPath("$.username").value("Edouard Yu"))
             .andExpect(jsonPath("$.phone").value("(+33)782475788"))
-            .andExpect(jsonPath("$.role").value("STUDENT"));
-
-
-        this.mockMvc.perform(get("/profiles/1"))
-            .andExpect(status().isOk())
-            .andDo(print())
-        ;
+            .andExpect(jsonPath("$.role").value("STUDENT"))
+            .andDo(print());
     }
 
     @Test
+    @WithMockUser(username = "EdouardY", roles = {"STUDENT"})
     public void testModifyProfile() throws Exception {
         ProfileModificationDTO profileModificationDTO = ProfileModificationDTO.builder()
             .username("EdouardY")
@@ -180,22 +180,24 @@ class UserControllerTest {
             .role(Role.STUDENT)
             .build();
 
-        when(userService.modifyProfile(any(Integer.class), any(ProfileModificationDTO.class))).thenReturn(profile);
+        when(userService.modifyProfile(anyInt(), any(ProfileModificationDTO.class))).thenReturn(profile);
 
         this.mockMvc.perform(put("/profiles/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(profileModificationDTO)))
             .andExpect(status().isOk())
-            .andDo(print())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.email").value("edouard.yu@eleve.isep.com"))
             .andExpect(jsonPath("$.firstname").value("Edouard"))
             .andExpect(jsonPath("$.lastname").value("Yu"))
             .andExpect(jsonPath("$.username").value("EdouardY"))
             .andExpect(jsonPath("$.phone").value("(+33)682475788"))
-            .andExpect(jsonPath("$.role").value("STUDENT"));
+            .andExpect(jsonPath("$.role").value("STUDENT"))
+            .andDo(print());
     }
 
     @Test
+    @WithMockUser(username = "EdouardY", roles = {"STUDENT"})
     public void testModifyPassword() throws Exception {
         PasswordModificationDTO passwordModificationDTO = PasswordModificationDTO.builder()
             .oldPassword("Azerty1234!")

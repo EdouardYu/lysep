@@ -1,10 +1,12 @@
 package software.engineering.lysep.service;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import software.engineering.lysep.dto.module.AssignUserDTO;
+import software.engineering.lysep.dto.user.FullnameDTO;
 import software.engineering.lysep.entity.*;
 import software.engineering.lysep.entity.Module;
 import software.engineering.lysep.entity.enumeration.Role;
@@ -15,7 +17,7 @@ import software.engineering.lysep.service.exception.NotFoundException;
 
 import java.util.List;
 
-
+@Transactional
 @AllArgsConstructor
 @Service
 public class ModuleService {
@@ -32,7 +34,7 @@ public class ModuleService {
             && !this.isProfessorAssignedToModule(user.getId(), module.getId()))
             throw new AccessDeniedException("Permission denied");
 
-        List<User> students = this.userService.findAllById(assignUserDTO.getUserIds());
+        List<User> students = this.userService.findAllByIdInAndRole(assignUserDTO.getUserIds(), Role.STUDENT);
 
         // Retrieve current students from the module
         List<User> currentStudents = this.findAllStudentModulesByModuleId(module.getId()).stream()
@@ -62,7 +64,7 @@ public class ModuleService {
     public void assignProfessors(AssignUserDTO assignUserDTO) {
         Module module = this.findById(assignUserDTO.getModuleId());
 
-        List<User> professors = this.userService.findAllById(assignUserDTO.getUserIds());
+        List<User> professors = this.userService.findAllByIdInAndRole(assignUserDTO.getUserIds(), Role.PROFESSOR);
 
         // Retrieve current professors from the module
         List<User> currentProfessors = this.findAllProfessorModulesByModuleId(module.getId()).stream()
@@ -70,7 +72,7 @@ public class ModuleService {
 
         // Determine which professors to add and remove
         List<User> professorsToAdd = professors.stream().filter(professor -> !currentProfessors.contains(professor)).toList();
-        List<User> professorsToRemove = currentProfessors.stream().filter(professor -> !professorsToAdd.contains(professor)).toList();
+        List<User> professorsToRemove = currentProfessors.stream().filter(professor -> !professors.contains(professor)).toList();
 
         // Add new professors
         List<ProfessorModule> professorModulesToAdd = professorsToAdd.stream()
@@ -89,16 +91,22 @@ public class ModuleService {
         );
     }
 
-    public List<User> findStudentsByModuleId(int moduleId) {
+    public List<FullnameDTO> findStudentsByModuleId(int moduleId) {
         return this.findAllStudentModulesByModuleId(moduleId).stream()
-            .map(StudentModule::getStudent)
-            .toList();
+            .map(sm -> FullnameDTO.builder()
+                .id(sm.getStudent().getId())
+                .fullname(sm.getStudent().getFirstname() + " " + sm.getStudent().getLastname())
+                .build()
+            ).toList();
     }
 
-    public List<User> findProfessorsByModuleId(int moduleId) {
+    public List<FullnameDTO> findProfessorsByModuleId(int moduleId) {
         return this.findAllProfessorModulesByModuleId(moduleId).stream()
-            .map(ProfessorModule::getProfessor)
-            .toList();
+            .map(pm -> FullnameDTO.builder()
+                .id(pm.getProfessor().getId())
+                .fullname(pm.getProfessor().getFirstname() + " " + pm.getProfessor().getLastname())
+                .build()
+            ).toList();
     }
 
     public List<Module> findAll() {

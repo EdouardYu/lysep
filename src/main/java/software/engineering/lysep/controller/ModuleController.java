@@ -6,8 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import software.engineering.lysep.dto.module.AssignUserDTO;
+import software.engineering.lysep.dto.user.FullnameDTO;
 import software.engineering.lysep.entity.Module;
-import software.engineering.lysep.entity.User;
 import software.engineering.lysep.service.ModuleService;
 
 import java.util.List;
@@ -34,13 +34,13 @@ public class ModuleController {
 
     @ResponseStatus(value = HttpStatus.OK)
     @GetMapping(path = "{moduleId}/students", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<User> getStudentsByModuleId(@PathVariable int moduleId) {
+    public List<FullnameDTO> getStudentsByModuleId(@PathVariable int moduleId) {
         return this.moduleService.findStudentsByModuleId(moduleId);
     }
 
     @ResponseStatus(value = HttpStatus.OK)
     @GetMapping(path = "{moduleId}/professors", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<User> getProfessorsByModuleId(@PathVariable int moduleId) {
+    public List<FullnameDTO> getProfessorsByModuleId(@PathVariable int moduleId) {
         return this.moduleService.findProfessorsByModuleId(moduleId);
     }
 

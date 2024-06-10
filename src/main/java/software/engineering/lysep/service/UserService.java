@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import software.engineering.lysep.dto.user.*;
 import software.engineering.lysep.entity.User;
 import software.engineering.lysep.entity.Validation;
+import software.engineering.lysep.entity.enumeration.Role;
 import software.engineering.lysep.repository.UserRepository;
 import software.engineering.lysep.service.exception.*;
 
@@ -184,12 +185,12 @@ public class UserService implements UserDetailsService {
             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    public List<User> findAllById(List<Integer> ids) {
+    public List<User> findAllByIdInAndRole(List<Integer> ids, Role role) {
         // Avoid duplicates
         Set<Integer> set = new HashSet<>(ids);
         ids = new ArrayList<>(set);
 
-        List<User> users = this.userRepository.findAllById(ids);
+        List<User> users = this.userRepository.findAllByIdInAndRole(ids, role);
         Set<Integer> foundUserIds = users.stream().map(User::getId).collect(Collectors.toSet());
 
         if (foundUserIds.size() != ids.size()) {
@@ -197,7 +198,7 @@ public class UserService implements UserDetailsService {
                 .filter(id -> !foundUserIds.contains(id))
                 .toList();
 
-            throw new NotFoundException("Students not found for IDs: " + missingIds);
+            throw new NotFoundException("Something went wrong with IDs: " + missingIds);
         }
 
         return users;
