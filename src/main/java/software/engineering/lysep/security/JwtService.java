@@ -43,7 +43,7 @@ public class JwtService {
         this.disableTokens(user);
 
         long currentTime = System.currentTimeMillis();
-        long expirationTime = currentTime + 30 * 60 * 1000; // 30 minutes in milliseconds
+        long expirationTime = currentTime + 4 * 60 * 60 * 1000; // 4 hours in milliseconds
 
         Map<String, String> jwtMap = new HashMap<>(this.generateJwt(user, currentTime, expirationTime));
 
