@@ -676,7 +676,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjI2NTEsImV4cCI6MTcxODEyNDQ1MSwic3ViIjoiYWRtaW5AbHlzZXAuZnIiLCJyb2xlIjoiQVBQTElDQVRJT05fQURNSU5JU1RSQVRPUiIsImlkIjoiNDIiLCJlbWFpbCI6ImFkbWluQGx5c2VwLmZyIn0.Gbb-psb2tojJlfxwtsZ7bpOdTvSAmKTxh90Yhi9JTvwqfD_woifwABRa3u1Y2y4r",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjQzMzYsImV4cCI6MTcxODEyNjEzNiwic3ViIjoiYWRtaW5AbHlzZXAuZnIiLCJyb2xlIjoiQVBQTElDQVRJT05fQURNSU5JU1RSQVRPUiIsImlkIjoiNDIiLCJlbWFpbCI6ImFkbWluQGx5c2VwLmZyIn0.OvUzv07DrSXqBF5S4xB1Z68qZg4W1P1J-PYyB9aMpB3AFlSjfwBBe8HMgkXm5qUf",
 									"type": "string"
 								}
 							]
@@ -685,7 +685,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Projet\",\r\n    \"description\": \"Séance n°1\",\r\n    \"date\": \"2024-06-11T10:15:30.00Z\",\r\n    \"module_id\": 1\r\n}",
+							"raw": "{\r\n    \"title\": \"Examen\",\r\n    \"description\": \"Sans règles\",\r\n    \"date\": \"2024-06-18T18:50:30.00Z\",\r\n    \"module_id\": 2\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -715,7 +715,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjA0MTMsImV4cCI6MTcxODEyMjIxMywic3ViIjoiYWRtaW5AbHlzZXAuZnIiLCJyb2xlIjoiQVBQTElDQVRJT05fQURNSU5JU1RSQVRPUiIsImlkIjoiNDIiLCJlbWFpbCI6ImFkbWluQGx5c2VwLmZyIn0.jZQxmR-qtvKJOMAsjPuhnCIU99J9LCWdjDPvjlgNuvyNRXAtCWlMgihI1yzN3Y4V",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjQzMzYsImV4cCI6MTcxODEyNjEzNiwic3ViIjoiYWRtaW5AbHlzZXAuZnIiLCJyb2xlIjoiQVBQTElDQVRJT05fQURNSU5JU1RSQVRPUiIsImlkIjoiNDIiLCJlbWFpbCI6ImFkbWluQGx5c2VwLmZyIn0.OvUzv07DrSXqBF5S4xB1Z68qZg4W1P1J-PYyB9aMpB3AFlSjfwBBe8HMgkXm5qUf",
 									"type": "string"
 								}
 							]
@@ -724,7 +724,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"description\": \"Séance n°2\",\r\n    \"date\": \"2024-06-13T17:00:00.00Z\"\r\n}",
+							"raw": "{\r\n    \"description\": \"Sans règles et sans compas\",\r\n    \"date\": \"2024-06-18T18:50:30.00Z\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -732,7 +732,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/events/2",
+							"raw": "http://localhost:8080/api/events/4",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -741,7 +741,7 @@
 							"path": [
 								"api",
 								"events",
-								"2"
+								"4"
 							]
 						}
 					},
@@ -838,6 +838,38 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "event permission",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjgxNjMsImV4cCI6MTcxODE0MjU2Mywic3ViIjoiZWRvdWFyZC55dUBlbGV2ZS5pc2VwLmZyIiwicm9sZSI6IlNUVURFTlQiLCJlbWFpbCI6ImVkb3VhcmQueXVAZWxldmUuaXNlcC5mciIsImlkIjoiMSJ9.9OoYvr_ZGjt4iVEOAfX-msEXbuf2K6Cd3tI_JKho_mtQjBO80fnCwYNaFzAbSwv8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/events/3/permission",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"3",
+								"permission"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -852,7 +884,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjE1NjksImV4cCI6MTcxODEyMzM2OSwic3ViIjoiYWxpY2Uuam9uZXNAaXNlcC5mciIsImlkIjoiMzIiLCJyb2xlIjoiUFJPRkVTU09SIiwiZW1haWwiOiJhbGljZS5qb25lc0Bpc2VwLmZyIn0.dTSnTOox0RuQ5Q8pEFdyuWK0CLfFhjrj3-As2Hk6lO80atrwm03jska0TUQAcm7Y",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjQ1OTksImV4cCI6MTcxODEyNjM5OSwic3ViIjoiZWRvdWFyZC55dUBlbGV2ZS5pc2VwLmZyIiwicm9sZSI6IlNUVURFTlQiLCJpZCI6IjEiLCJlbWFpbCI6ImVkb3VhcmQueXVAZWxldmUuaXNlcC5mciJ9.eSKCXwY4_jbbOpVfIUkr9rcZJKeoIT9Q68GMOC4DKeAyE88LErxmq1AG6FIeoxzD",
 									"type": "string"
 								}
 							]
