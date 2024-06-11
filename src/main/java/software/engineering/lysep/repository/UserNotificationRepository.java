@@ -9,10 +9,10 @@ import java.util.stream.Stream;
 
 public interface UserNotificationRepository extends JpaRepository<UserNotification, Integer> {
     @Query(
-        "SELECT un FROM UserNotification un " +
-        "WHERE un.user.id = :userId " +
-        "AND un.notification.event.date >= :instant " +
-        "AND un.notification.event.deleted = false " +
-            "ORDER BY un.notification.event.date ASC")
+        "SELECT UN FROM UserNotification UN " +
+        "WHERE UN.user.id = :userId " +
+        "AND UN.notification.event.date >= :instant " +
+        "AND UN.notification.event.deleted = false " +
+            "ORDER BY UN.notification.event.date DESC")
     Stream<UserNotification> findAllByUserIdAndEventDateAfter(int userId, Instant instant);
 }

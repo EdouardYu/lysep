@@ -1,0 +1,910 @@
+{
+	"info": {
+		"_postman_id": "3cc394e2-4b55-4295-95b2-70ef2681acc3",
+		"name": "lysep",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22057795"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "sign up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstname\": \"Edouard\",\r\n    \"lastname\": \"Yu\",\r\n    \"password\": \"Azerty1234!\",\r\n    \"phone\": \"(+33)782475788\",\r\n    \"role\": \"STUDENT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "activate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"edouard.yu@eleve.isep.fr\",\r\n    \"code\": \"442497\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/activate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"activate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new activation code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"edouard.yu@eleve.isep.fr\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/activate/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"activate",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"edouard.yu@eleve.isep.fr\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/password/reset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"password",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "new password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"edouard.yu@eleve.isep.fr\",\r\n    \"password\": \"Password1!\",\r\n    \"code\": \"561877\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/password/new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"password",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign in as Edouard Yu",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"edouard.yu@eleve.isep.fr\",\r\n    \"password\": \"Azerty1234!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign in as Bob Rodriguez",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"bob.rodriguez@eleve.isep.fr\",\r\n    \"password\": \"Azerty1234!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign in as admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@lysep.fr\",\r\n    \"password\": \"admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign in as Alice Jones (professor)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"alice.jones@isep.fr\",\r\n    \"password\": \"Azerty1234!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign in as Charlie Davis (professor)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"charlie.davis@isep.fr\",\r\n    \"password\": \"Azerty1234!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign out",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTc4OTM5NzIsImV4cCI6MTcxNzg5NTc3Miwic3ViIjoiZWRvdWFyZC55dUBlbGV2ZS5pc2VwLmZyIiwiaWQiOiIxIiwicm9sZSI6IlNUVURFTlQiLCJlbWFpbCI6ImVkb3VhcmQueXVAZWxldmUuaXNlcC5mciJ9.sHcwCHCezMOcPUm_HK1reyecica4cEMxvTatRG_CVfz3-xxS1vRfkDwfpXVWfCPQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/signout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"signout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edouard Yu profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTc4OTQwMDksImV4cCI6MTcxNzg5NTgwOSwic3ViIjoiZWRvdWFyZC55dUBlbGV2ZS5pc2VwLmZyIiwiaWQiOiIxIiwicm9sZSI6IlNUVURFTlQiLCJlbWFpbCI6ImVkb3VhcmQueXVAZWxldmUuaXNlcC5mciJ9.4QIvYgq_fYj6zlZYYJpQqT3pz6qaCvGsPz70tgeAfbjpeYTJc4B1Pl6F3AIjNEcw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/profiles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"profiles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modify Edouard Yu profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTc4OTQwMDksImV4cCI6MTcxNzg5NTgwOSwic3ViIjoiZWRvdWFyZC55dUBlbGV2ZS5pc2VwLmZyIiwiaWQiOiIxIiwicm9sZSI6IlNUVURFTlQiLCJlbWFpbCI6ImVkb3VhcmQueXVAZWxldmUuaXNlcC5mciJ9.4QIvYgq_fYj6zlZYYJpQqT3pz6qaCvGsPz70tgeAfbjpeYTJc4B1Pl6F3AIjNEcw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"EdouardY\",\r\n    \"phone\": \"(+33)682475788\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/profiles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"profiles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modify Edouard Yu password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTc4OTQwMDksImV4cCI6MTcxNzg5NTgwOSwic3ViIjoiZWRvdWFyZC55dUBlbGV2ZS5pc2VwLmZyIiwiaWQiOiIxIiwicm9sZSI6IlNUVURFTlQiLCJlbWFpbCI6ImVkb3VhcmQueXVAZWxldmUuaXNlcC5mciJ9.4QIvYgq_fYj6zlZYYJpQqT3pz6qaCvGsPz70tgeAfbjpeYTJc4B1Pl6F3AIjNEcw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"old_password\": \"Password1!\",\r\n    \"new_password\": \"Azerty1234!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/profiles/1/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"profiles",
+								"1",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign in as Edouard Yu Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"edouard.yu@eleve.isep.fr\",\r\n    \"password\": \"Azerty1234!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/signin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "module",
+			"item": [
+				{
+					"name": "modules",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgwMDU1MzgsImV4cCI6MTcxODAwNzMzOCwic3ViIjoiYWxpY2Uuam9uZXNAaXNlcC5mciIsImVtYWlsIjoiYWxpY2Uuam9uZXNAaXNlcC5mciIsInJvbGUiOiJQUk9GRVNTT1IiLCJpZCI6IjMyIn0.UeQeoNGsmtgFe03LfJkx_9ZUJ4VTTyC1qAdRO2i16PzeKoddXcEIGveZRaUgjDwt",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/modules",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"modules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "module students",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTc5NzQxMzIsImV4cCI6MTcxNzk3NTkzMiwic3ViIjoiYWRtaW5AbHlzZXAuZnIiLCJyb2xlIjoiQVBQTElDQVRJT05fQURNSU5JU1RSQVRPUiIsImlkIjoiNDIiLCJlbWFpbCI6ImFkbWluQGx5c2VwLmZyIn0.ygOHYmxn3SmPFqOL_C0mJmtZjU13gWChL-moQHViPP_oUWM4knD6P5OElZn0M79U",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/modules/1/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"modules",
+								"1",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "module professors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTc5NzQ5NzEsImV4cCI6MTcxNzk3Njc3MSwic3ViIjoiYWRtaW5AbHlzZXAuZnIiLCJyb2xlIjoiQVBQTElDQVRJT05fQURNSU5JU1RSQVRPUiIsImlkIjoiNDIiLCJlbWFpbCI6ImFkbWluQGx5c2VwLmZyIn0.JR2RJt5cHbZtay023AdMjJu-SXzvgoZWW2CAvtlTNxgmwu4BuH0CXCidUfNjsTdl",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/modules/1/professors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"modules",
+								"1",
+								"professors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign students",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTc5NzQ5NzEsImV4cCI6MTcxNzk3Njc3MSwic3ViIjoiYWRtaW5AbHlzZXAuZnIiLCJyb2xlIjoiQVBQTElDQVRJT05fQURNSU5JU1RSQVRPUiIsImlkIjoiNDIiLCJlbWFpbCI6ImFkbWluQGx5c2VwLmZyIn0.JR2RJt5cHbZtay023AdMjJu-SXzvgoZWW2CAvtlTNxgmwu4BuH0CXCidUfNjsTdl",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_ids\": [1, 10, 11, 12, 13],\r\n    \"module_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/modules/assign/students",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"modules",
+								"assign",
+								"students"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign professors",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTc5NzQ5NzEsImV4cCI6MTcxNzk3Njc3MSwic3ViIjoiYWRtaW5AbHlzZXAuZnIiLCJyb2xlIjoiQVBQTElDQVRJT05fQURNSU5JU1RSQVRPUiIsImlkIjoiNDIiLCJlbWFpbCI6ImFkbWluQGx5c2VwLmZyIn0.JR2RJt5cHbZtay023AdMjJu-SXzvgoZWW2CAvtlTNxgmwu4BuH0CXCidUfNjsTdl",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user_ids\": [32],\r\n    \"module_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/modules/assign/professors",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"modules",
+								"assign",
+								"professors"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "event",
+			"item": [
+				{
+					"name": "create event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjI2NTEsImV4cCI6MTcxODEyNDQ1MSwic3ViIjoiYWRtaW5AbHlzZXAuZnIiLCJyb2xlIjoiQVBQTElDQVRJT05fQURNSU5JU1RSQVRPUiIsImlkIjoiNDIiLCJlbWFpbCI6ImFkbWluQGx5c2VwLmZyIn0.Gbb-psb2tojJlfxwtsZ7bpOdTvSAmKTxh90Yhi9JTvwqfD_woifwABRa3u1Y2y4r",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Projet\",\r\n    \"description\": \"Séance n°1\",\r\n    \"date\": \"2024-06-11T10:15:30.00Z\",\r\n    \"module_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjA0MTMsImV4cCI6MTcxODEyMjIxMywic3ViIjoiYWRtaW5AbHlzZXAuZnIiLCJyb2xlIjoiQVBQTElDQVRJT05fQURNSU5JU1RSQVRPUiIsImlkIjoiNDIiLCJlbWFpbCI6ImFkbWluQGx5c2VwLmZyIn0.jZQxmR-qtvKJOMAsjPuhnCIU99J9LCWdjDPvjlgNuvyNRXAtCWlMgihI1yzN3Y4V",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Séance n°2\",\r\n    \"date\": \"2024-06-13T17:00:00.00Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/events/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "event",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjE1NjksImV4cCI6MTcxODEyMzM2OSwic3ViIjoiYWxpY2Uuam9uZXNAaXNlcC5mciIsImlkIjoiMzIiLCJyb2xlIjoiUFJPRkVTU09SIiwiZW1haWwiOiJhbGljZS5qb25lc0Bpc2VwLmZyIn0.dTSnTOox0RuQ5Q8pEFdyuWK0CLfFhjrj3-As2Hk6lO80atrwm03jska0TUQAcm7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/events/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all events",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMTM1MzAsImV4cCI6MTcxODExNTMzMCwic3ViIjoiY2hhcmxpZS5kYXZpc0Bpc2VwLmZyIiwiZW1haWwiOiJjaGFybGllLmRhdmlzQGlzZXAuZnIiLCJyb2xlIjoiUFJPRkVTU09SIiwiaWQiOiIzMyJ9.Ctbmd4zEVGBycnVRKOIC8FWZwkAB3RVdtIGcrsuNH2j_YE7eotNHwtjNwA7_CkMy",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/events",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "event by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjEzNTEsImV4cCI6MTcxODEyMzE1MSwic3ViIjoiYWRtaW5AbHlzZXAuZnIiLCJpZCI6IjQyIiwicm9sZSI6IkFQUExJQ0FUSU9OX0FETUlOSVNUUkFUT1IiLCJlbWFpbCI6ImFkbWluQGx5c2VwLmZyIn0.hLEWDUWuVn22flf6vuTYIMSvP6QQ2zjFOfLlkuwc8tBWSxBlohBRszZM0EspV9mH",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/events/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"events",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notification",
+			"item": [
+				{
+					"name": "all notifications",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjE1NjksImV4cCI6MTcxODEyMzM2OSwic3ViIjoiYWxpY2Uuam9uZXNAaXNlcC5mciIsImlkIjoiMzIiLCJyb2xlIjoiUFJPRkVTU09SIiwiZW1haWwiOiJhbGljZS5qb25lc0Bpc2VwLmZyIn0.dTSnTOox0RuQ5Q8pEFdyuWK0CLfFhjrj3-As2Hk6lO80atrwm03jska0TUQAcm7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all alerts",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJpYXQiOjE3MTgxMjE1NjksImV4cCI6MTcxODEyMzM2OSwic3ViIjoiYWxpY2Uuam9uZXNAaXNlcC5mciIsImlkIjoiMzIiLCJyb2xlIjoiUFJPRkVTU09SIiwiZW1haWwiOiJhbGljZS5qb25lc0Bpc2VwLmZyIn0.dTSnTOox0RuQ5Q8pEFdyuWK0CLfFhjrj3-As2Hk6lO80atrwm03jska0TUQAcm7Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/alerts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"alerts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

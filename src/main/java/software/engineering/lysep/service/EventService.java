@@ -1,6 +1,8 @@
 package software.engineering.lysep.service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -18,9 +20,11 @@ import software.engineering.lysep.repository.*;
 import software.engineering.lysep.service.exception.NotFoundException;
 
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Stream;
 
+@Slf4j
 @Transactional
 @Service
 @AllArgsConstructor
@@ -39,7 +43,7 @@ public class EventService {
         Module module = this.moduleService.findById(eventDTO.getModuleId());
 
         Event event = Event.builder()
-            .title(eventDTO.getTitle())
+            .title(module.getLabel() + " - " + eventDTO.getTitle())
             .description(eventDTO.getDescription())
             .date(eventDTO.getDate())
             .module(module)
@@ -155,8 +159,6 @@ public class EventService {
             .build();
     }
 
-
-
     private Event findById(int id) {
         return this.eventRepository.findById(id)
             .orElseThrow(() -> new NotFoundException("Event not found"));
@@ -166,4 +168,21 @@ public class EventService {
     private boolean isParticipant(int userId, int eventId) {
         return this.participantRepository.existsByUserIdAndEventId(userId, eventId);
     }
+
+    @Scheduled(cron = "@daily")
+    //@Scheduled(cron = "0 */1 * * * *")
+    public void createEventAlert() {
+        Instant now = Instant.now();
+        log.info("Creation of daily alerts at: {}", now);
+
+        this.eventRepository.findAllByDateBetween(Instant.now(), Instant.now().plus(7, ChronoUnit.DAYS))
+            .forEach(event -> {
+                long daysUntilEvent = (event.getDate().getEpochSecond() - now.getEpochSecond()) / (24 * 60 * 60); // convert seconds to days
+                if (daysUntilEvent == 7 || daysUntilEvent == 3 || daysUntilEvent == 1) {
+                    List<Participant> participants = this.participantRepository.findAllByEventId(event.getId());
+                    this.notificationService.sendEventAlert(event, participants, daysUntilEvent);
+                }
+            });
+    }
+
 }

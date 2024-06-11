@@ -1,5 +1,6 @@
 package software.engineering.lysep.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,7 +23,7 @@ public class EventController {
     @PreAuthorize("hasAnyRole('PROFESSOR', 'SCHOOL_ADMINISTRATOR', 'APPLICATION_ADMINISTRATOR')")
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createEvent(@RequestBody EventCreationDTO eventCreationDTO) {
+    public void createEvent(@Valid @RequestBody EventCreationDTO eventCreationDTO) {
         this.eventService.createEvent(eventCreationDTO);
     }
 
@@ -33,7 +34,7 @@ public class EventController {
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public EventDTO updateEvent(@PathVariable int id, @RequestBody EventModificationDTO eventDTO) {
+    public EventDTO updateEvent(@PathVariable int id, @Valid @RequestBody EventModificationDTO eventDTO) {
         return this.eventService.updateEvent(id, eventDTO);
     }
 
