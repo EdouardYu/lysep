@@ -56,4 +56,10 @@ public class EventController {
     public EventDTO getEventById(@PathVariable int id) {
         return this.eventService.getEventById(id);
     }
+
+    @ResponseStatus(value = HttpStatus.OK)
+    @GetMapping(path = "{id}/permission", produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean hasPermission(@PathVariable int id) {
+        return this.eventService.hasPermission(id);
+    }
 }

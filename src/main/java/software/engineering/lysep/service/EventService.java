@@ -159,6 +159,14 @@ public class EventService {
             .build();
     }
 
+    public boolean hasPermission(int eventId) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        return (Role.PROFESSOR.equals(user.getRole()) && this.isParticipant(user.getId(), eventId))
+            || Role.SCHOOL_ADMINISTRATOR.equals(user.getRole())
+            || Role.APPLICATION_ADMINISTRATOR.equals(user.getRole());
+    }
+
     private Event findById(int id) {
         return this.eventRepository.findById(id)
             .orElseThrow(() -> new NotFoundException("Event not found"));
@@ -170,7 +178,7 @@ public class EventService {
     }
 
     @Scheduled(cron = "@daily")
-    //@Scheduled(cron = "0 */1 * * * *")
+    //@Scheduled(cron = "0 */1 * * * *") // every minute
     public void createEventAlert() {
         Instant now = Instant.now();
         log.info("Creation of daily alerts at: {}", now);
@@ -184,5 +192,4 @@ public class EventService {
                 }
             });
     }
-
 }
